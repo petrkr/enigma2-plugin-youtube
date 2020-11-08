@@ -65,6 +65,7 @@ def GetUrl(videos):
 	from src.YouTubeVideoUrl import YouTubeVideoUrl
 	ytdl = YouTubeVideoUrl()
 	videoUrl = ytdl.extract(videos)
+	print('Video Url', videoUrl)
 	videoUrl = videoUrl.split('&suburi=', 1)[0]
 	print('Video Url', videoUrl)
 	return videoUrl
