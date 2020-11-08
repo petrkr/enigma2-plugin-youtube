@@ -519,9 +519,7 @@ class YouTubeVideoUrl():
 				if not url:
 					url = list(url_map.values())[0]
 		print('[YouTubeVideoUrl] str url', str(url))
-		if url:
-			return str(url)
-		else:
+		if not url:
 			error_message = clean_html(try_get(
 					player_response,
 					lambda x: x['playabilityStatus']['reason'],
@@ -541,6 +539,5 @@ class YouTubeVideoUrl():
 					self.extract(videoId, retry)
 				else:
 					error_message = 'No supported formats found in video info!'
-			if error_message:
-				raise Exception(error_message)
-		print('[YouTubeVideoUrl] unknown return')
+			raise Exception(error_message)
+		return str(url)
