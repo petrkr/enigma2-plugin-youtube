@@ -290,17 +290,17 @@ class YouTubeVideoUrl():
 			if config:
 				return loads(uppercase_escape(config))
 
-	def extract(self, video_id, retry=0):
+	def extract(self, videoId, retry=0):
 		gl = config.plugins.YouTube.searchRegion.value
 		hl = config.plugins.YouTube.searchLanguage.value
 
-		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (video_id, gl, hl)
+		url = 'https://www.youtube.com/watch?v=%s&gl=%s&hl=%s&has_verified=1&bpctr=9999999999' % (videoId, gl, hl)
 
 		# Get video webpage
 		video_webpage, urlh = self._download_webpage_handle(url)
 
 		qs = compat_parse_qs(compat_urlparse(urlh.geturl()).query)
-		video_id = qs.get('v', [None])[0] or video_id
+		video_id = qs.get('v', [None])[0] or videoId
 
 		if not video_webpage:
 			raise Exception('Video webpage not found!')
@@ -538,7 +538,7 @@ class YouTubeVideoUrl():
 				if retry < 3:
 					print('[YouTubeVideoUrl] No supported formats found, trying again!')
 					retry += 1
-					self.extract(video_id, retry)
+					self.extract(videoId, retry)
 				else:
 					error_message = 'No supported formats found in video info!'
 			if error_message:
