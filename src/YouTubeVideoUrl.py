@@ -389,6 +389,7 @@ class YouTubeVideoUrl():
 			formats = []
 			url_map_str = []
 
+			print('[YouTubeVideoUrl] streaming_formats', len(streaming_formats))
 			for fmt in streaming_formats:
 				url_map = {
 						'url': None,
@@ -423,6 +424,7 @@ class YouTubeVideoUrl():
 
 				formats.append(url_map)
 
+			print('[YouTubeVideoUrl] formats', formats)
 			# If priority format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
@@ -453,10 +455,12 @@ class YouTubeVideoUrl():
 			if not url_map_str and formats:
 				url_map_str.append(formats[0])
 
+			print('[YouTubeVideoUrl] url_map_str', url_map_str)
 			for url_map in url_map_str:
 				if url:
 					url += '&suburi='
 				url += url_map['url']
+				print('[YouTubeVideoUrl] url', url)
 
 				if url_map['cipher']:
 					if 's' in url_map['url_data']:
@@ -514,6 +518,7 @@ class YouTubeVideoUrl():
 							break
 				if not url:
 					url = list(url_map.values())[0]
+		print('[YouTubeVideoUrl] url', url)
 		if url:
 			return str(url)
 		else:
