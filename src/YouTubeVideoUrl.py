@@ -540,4 +540,5 @@ class YouTubeVideoUrl():
 				else:
 					error_message = 'No supported formats found in video info!'
 			raise Exception(error_message)
-		return str(url)
+		returnUrl = str(url)
+		return returnUrl
