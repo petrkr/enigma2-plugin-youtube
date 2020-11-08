@@ -424,7 +424,7 @@ class YouTubeVideoUrl():
 
 				formats.append(url_map)
 
-			print('[YouTubeVideoUrl] formats', formats)
+			print('[YouTubeVideoUrl] formats len', len(formats))
 			# If priority format changed in config, recreate priority list
 			if PRIORITY_VIDEO_FORMAT[0] != config.plugins.YouTube.maxResolution.value:
 				createPriorityFormats()
@@ -455,7 +455,7 @@ class YouTubeVideoUrl():
 			if not url_map_str and formats:
 				url_map_str.append(formats[0])
 
-			print('[YouTubeVideoUrl] url_map_str', url_map_str)
+			print('[YouTubeVideoUrl] url_map_str len ', len(url_map_str))
 			for url_map in url_map_str:
 				if url:
 					url += '&suburi='
@@ -518,7 +518,7 @@ class YouTubeVideoUrl():
 							break
 				if not url:
 					url = list(url_map.values())[0]
-		print('[YouTubeVideoUrl] url', url)
+		print('[YouTubeVideoUrl] str url', str(url))
 		if url:
 			return str(url)
 		else:
@@ -543,3 +543,4 @@ class YouTubeVideoUrl():
 					error_message = 'No supported formats found in video info!'
 			if error_message:
 				raise Exception(error_message)
+		print('[YouTubeVideoUrl] unknown return')
